@@ -1,43 +1,43 @@
 @extends('admin.layout')
 
 @section('content')
-<h1 class="text-2xl mb-4">کتاب جدید</h1>
+<h1 class="text-3xl font-bold mb-6">کتاب جدید</h1>
 
-<form action="{{ route('books.store') }}" method="POST">
-    @csrf
-    <div class="mb-4">
-        <label>عنوان</label>
-        <input type="text" name="title" class="border px-2 py-1 w-full">
-    </div>
+<form action="{{ route('books.store') }}" method="POST" class="bg-white p-6 rounded shadow-md">
+@csrf
+<div class="mb-4">
+<label class="block mb-1 font-semibold">عنوان</label>
+<input type="text" name="title" class="border px-3 py-2 w-full rounded" required>
+</div>
 
-    <div class="mb-4">
-        <label>نویسنده</label>
-        <select name="author_id" class="border px-2 py-1 w-full">
-            @foreach($authors as $author)
-                <option value="{{ $author->id }}">{{ $author->name }}</option>
-            @endforeach
-        </select>
-    </div>
+<div class="mb-4">
+<label class="block mb-1 font-semibold">نویسنده</label>
+<select name="author_id" class="border px-3 py-2 w-full rounded" required>
+@foreach($authors as $author)
+<option value="{{ $author->id }}">{{ $author->name }}</option>
+@endforeach
+</select>
+</div>
 
-    <div class="mb-4">
-        <label>دسته‌بندی</label>
-        <select name="category_id" class="border px-2 py-1 w-full">
-            @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endforeach
-        </select>
-    </div>
+<div class="mb-4">
+<label class="block mb-1 font-semibold">دسته‌بندی</label>
+<select name="category_id" class="border px-3 py-2 w-full rounded">
+@foreach($categories as $category)
+<option value="{{ $category->id }}">{{ $category->name }}</option>
+@endforeach
+</select>
+</div>
 
-    <div class="mb-4">
-        <label>توضیحات</label>
-        <textarea name="description" class="border px-2 py-1 w-full"></textarea>
-    </div>
+<div class="mb-4">
+<label class="block mb-1 font-semibold">توضیحات</label>
+<textarea name="description" class="border px-3 py-2 w-full rounded" rows="4"></textarea>
+</div>
 
-    <div class="mb-4">
-        <label>کاور (URL)</label>
-        <input type="text" name="cover_url" class="border px-2 py-1 w-full">
-    </div>
+<div class="mb-4">
+<label class="block mb-1 font-semibold">کاور (URL)</label>
+<input type="text" name="cover_url" class="border px-3 py-2 w-full rounded">
+</div>
 
-    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">ذخیره</button>
+<button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">ذخیره</button>
 </form>
 @endsection

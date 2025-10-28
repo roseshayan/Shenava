@@ -6,21 +6,24 @@
     <title>پنل مدیریت شنوا</title>
     <link href="{{ asset('build/assets/app-CHpz3BqR.css') }}" rel="stylesheet">
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gray-100 font-sans min-h-screen flex flex-col">
 
-    <nav class="bg-gray-800 text-white p-4">
-        <a href="{{ route('books.index') }}" class="mr-4">کتاب‌ها</a>
-        <a href="{{ route('categories.index') }}" class="mr-4">دسته‌بندی‌ها</a>
-        <a href="{{ route('authors.index') }}" class="mr-4">نویسندگان</a>
-        <a href="{{ route('episodes.index') }}" class="mr-4">اپیزودها</a>
-        <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="float-left">خروج</a>
-
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-            @csrf
-        </form>
+    <!-- Navbar -->
+    <nav class="bg-gray-800 text-white p-4 flex justify-between items-center">
+        <div class="flex space-x-4">
+            <a href="{{ route('books.index') }}" class="hover:underline">کتاب‌ها</a>
+            <a href="{{ route('categories.index') }}" class="hover:underline">دسته‌بندی‌ها</a>
+            <a href="{{ route('authors.index') }}" class="hover:underline">نویسندگان</a>
+            <a href="{{ route('episodes.index') }}" class="hover:underline">اپیزودها</a>
+        </div>
+        <div>
+            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="hover:underline">خروج</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
+        </div>
     </nav>
 
-    <div class="container mx-auto p-4">
+    <!-- Content -->
+    <div class="container mx-auto p-6 flex-1">
         @yield('content')
     </div>
 
