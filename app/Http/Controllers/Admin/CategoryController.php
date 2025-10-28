@@ -16,7 +16,8 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view('admin.categories.create');
+        $categories = Category::all(); // برای انتخاب parent
+        return view('admin.categories.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -30,7 +31,8 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        return view('admin.categories.edit', compact('category'));
+        $categories = Category::where('id', '!=', $category->id)->get(); // خود category را نباید انتخاب کنه
+        return view('admin.categories.edit', compact('category', 'categories'));
     }
 
     public function update(Request $request, Category $category)

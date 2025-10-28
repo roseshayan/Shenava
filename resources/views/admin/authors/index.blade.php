@@ -2,36 +2,36 @@
 
 @section('content')
     <div class="flex justify-between items-center mb-4">
-        <h1 class="text-3xl font-bold">دسته‌بندی‌ها</h1>
-        <a href="{{ route('categories.create') }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mb-4 inline-block">دسته‌بندی
-            جدید</a>
+        <h1 class="text-3xl font-bold">نویسندگان</h1>
+        <a href="{{ route('authors.create') }}"
+           class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded mb-4 inline-block">نویسنده جدید</a>
     </div>
 
-    <table class="w-full table-auto border border-gray-300 bg-white rounded shadow">
+    <table class="w-full table-auto border bg-white rounded shadow">
         <thead class="bg-gray-200 text-right">
         <tr>
             <th class="px-4 py-2 border">ID</th>
-            <th class="px-4 py-2 border">نام دسته‌بندی</th>
-            <th class="px-4 py-2 border">زیرمجموعه</th>
+            <th class="px-4 py-2 border">تصویر</th>
+            <th class="px-4 py-2 border">نام</th>
             <th class="px-4 py-2 border">عملیات</th>
         </tr>
         </thead>
         <tbody>
-        @foreach($categories as $category)
-            <tr class="{{ $category->parent_id ? 'bg-gray-50 italic' : '' }}">
-                <td class="px-4 py-2 border">{{ $category->id }}</td>
-                <td class="px-4 py-2 border">{{ $category->name }}</td>
+        @foreach($authors as $author)
+            <tr>
+                <td class="px-4 py-2 border">{{ $author->id }}</td>
                 <td class="px-4 py-2 border">
-                    @if($category->parent)
-                        <span class="text-sm text-gray-600">{{ $category->parent->fullParentName() }}</span>
+                    @if($author->profile_photo)
+                        <img src="{{ asset('storage/'.$author->profile_photo) }}" class="w-12 h-12 rounded-full">
                     @else
                         -
                     @endif
                 </td>
+                <td class="px-4 py-2 border">{{ $author->name }}</td>
                 <td class="px-4 py-2 border flex space-x-2 justify-end">
-                    <a href="{{ route('categories.edit', $category->id) }}"
+                    <a href="{{ route('authors.edit',$author->id) }}"
                        class="bg-yellow-400 text-white px-2 py-1 rounded hover:bg-yellow-500">ویرایش</a>
-                    <form action="{{ route('categories.destroy', $category->id) }}" method="POST"
+                    <form action="{{ route('authors.destroy',$author->id) }}" method="POST"
                           onsubmit="return confirm('آیا مطمئن هستید؟')">
                         @csrf
                         @method('DELETE')

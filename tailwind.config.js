@@ -12,7 +12,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Vazirmatn FD', 'ui-sans-serif', 'system-ui'],
             },
         },
     },

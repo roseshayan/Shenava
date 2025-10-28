@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,11 +12,12 @@ return new class extends Migration
     {
         Schema::create('episodes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('book_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->string('audio_url'); // لینک فایل صوتی
-            $table->integer('duration')->nullable(); // ثانیه
-            $table->integer('position_in_series')->nullable();
+            $table->foreignId('book_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('author_id')->constrained()->cascadeOnDelete();
+            $table->string('audio_url'); // مسیر فایل صوتی
+            $table->integer('duration')->nullable(); // مدت زمان به ثانیه
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

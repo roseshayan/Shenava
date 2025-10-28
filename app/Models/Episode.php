@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Episode extends Model
 {
-    use HasFactory;
+    protected $fillable = ['title', 'book_id', 'author_id', 'audio_url', 'duration', 'description'];
 
-    protected $fillable = ['book_id', 'title', 'audio_url', 'duration', 'position_in_series'];
-
-    // هر اپیزود متعلق به یک کتاب است
     public function book()
     {
         return $this->belongsTo(Book::class);
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(Author::class);
     }
 }

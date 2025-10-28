@@ -27,4 +27,13 @@ class Category extends Model
     {
         return $this->hasMany(Book::class);
     }
+
+    // مسیر سلسله‌مراتبی برای نمایش در جدول
+    public function fullParentName()
+    {
+        if($this->parent) {
+            return $this->parent->fullParentName() . ' > ' . $this->name;
+        }
+        return $this->name;
+    }
 }
